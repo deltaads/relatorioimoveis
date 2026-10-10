@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Performance de Anúncios | Imóveis em Imbé</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; color: #0f172a !important; }
+      .print-shadow { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+  <!-- BARRA DE AVISO / TOPO -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 no-print border-b border-slate-800">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium text-white">Relatório Oficial de Campanhas Meta Ads</span>
+        <span class="text-slate-500">|</span>
+        <span>Período: 01/10/2026 a 10/10/2026</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-500 text-white font-medium px-3 py-1 rounded-lg transition text-xs shadow-sm">
+          <i class="fa-solid fa-file-pdf"></i> Salvar em PDF / Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER PRINCIPAL -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- CABEÇALHO PRINCIPAL -->
+    <header class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-brand-700 text-xs font-semibold uppercase tracking-wider">
+          <i class="fa-solid fa-house-chimney"></i> Imóveis em Imbé / RS
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Painel de Resultados & Eficiência de Anúncios
+        </h1>
+        <p class="text-sm text-slate-500 max-w-2xl">
+          Apresentação transparente do retorno obtido com a estratégia profissional de tráfego e comparativo didático de conversão em vendas.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap md:flex-col items-start md:items-end gap-2 text-xs">
+        <div class="bg-slate-100 px-3.5 py-2 rounded-xl text-slate-600 border border-slate-200">
+          <span class="text-slate-400 block font-normal">Período de Veiculação:</span>
+          <span class="font-semibold text-slate-800">10 Dias (01 a 10 de Outubro)</span>
+        </div>
+        <div class="bg-emerald-50 text-emerald-700 px-3.5 py-1.5 rounded-xl border border-emerald-200 font-semibold flex items-center gap-1.5">
+          <i class="fa-solid fa-check-double text-emerald-500"></i> 154 Contatos no Período
+        </div>
+      </div>
+    </header>
+
+    <!-- BANNER DE DESTAQUE: RESUMO EM 1 MINUTO -->
+    <section class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+      <!-- Elemento de fundo decorativo -->
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-4xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
+          <i class="fa-solid fa-bolt"></i> Resumo Executivo para Tomada de Decisão
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold leading-snug">
+          A estratégia profissional gerou <span class="text-emerald-400 font-extrabold">133 interessados diretos</span> por apenas <span class="text-emerald-400 font-extrabold">R$ 3,89</span> cada.
+        </h2>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Com o orçamento conjunto de <strong>R$ 70/dia</strong> focado em pessoas com real intenção de compra, cada centavo foi direcionado para abrir conversas de vendas no WhatsApp. O resultado foi um custo por interessado quase a <strong>metade</strong> do anúncio turbinado avulso.
+        </p>
+
+        <!-- Três Números Chave -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+          <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+            <span class="text-xs text-slate-400 uppercase tracking-wider block font-medium">Interessados Reais</span>
+            <span class="text-2xl font-black text-white mt-1 block">133 contatos</span>
+            <span class="text-xs text-emerald-400 mt-1 block">Via Campanha Estruturada</span>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+            <span class="text-xs text-slate-400 uppercase tracking-wider block font-medium">Custo por Interessado</span>
+            <span class="text-2xl font-black text-emerald-400 mt-1 block">R$ 3,89</span>
+            <span class="text-xs text-slate-300 mt-1 block">Média excelente para imóveis</span>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+            <span class="text-xs text-slate-400 uppercase tracking-wider block font-medium">Taxa de Conversão</span>
+            <span class="text-2xl font-black text-white mt-1 block">5,90%</span>
+            <span class="text-xs text-emerald-400 mt-1 block">1 conversa a cada 17 cliques</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 1: OS RESULTADOS DA CAMPANHA PROFISSIONAL (CASA 1 & CASA 2) -->
+    <section class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-3">
+        <div>
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Estratégia Otimizada</span>
+          <h2 class="text-xl font-bold text-slate-900">1. Desempenho dos Imóveis Anunciados Profissionalmente</h2>
+        </div>
+        <span class="text-xs text-slate-500">Conjunto compartilhado de R$ 70/dia</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- CARD CASA 1 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-3">
+              <div class="p-3 bg-blue-50 text-brand-600 rounded-2xl">
+                <i class="fa-solid fa-water text-xl"></i>
+              </div>
+              <span class="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-200">
+                Campeão de Volume
+              </span>
+            </div>
+            
+            <div class="mt-4">
+              <h3 class="text-lg font-bold text-slate-900 leading-tight">
+                CASA 1 - Sobrado Próximo ao Mar
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">Localização: Centro de Imbé</p>
+            </div>
+
+            <!-- Dados Principais -->
+            <div class="grid grid-cols-2 gap-3 mt-5">
+              <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider block">Conversas Geradas</span>
+                <span class="text-2xl font-black text-brand-700 mt-0.5 block">92</span>
+                <span class="text-[11px] text-slate-500">potenciais compradores</span>
+              </div>
+              <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider block">Custo por Conversa</span>
+                <span class="text-2xl font-black text-emerald-600 mt-0.5 block">R$ 3,89</span>
+                <span class="text-[11px] text-slate-500">por cliente no chat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Métricas de Apoio -->
+          <div class="pt-4 border-t border-slate-100 grid grid-cols-3 text-center text-xs text-slate-600">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Investido</span>
+              <span class="font-bold text-slate-900 text-sm mt-0.5 block">R$ 357,53</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Cliques</span>
+              <span class="font-bold text-slate-900 text-sm mt-0.5 block">1.537</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Conversão</span>
+              <span class="font-bold text-emerald-600 text-sm mt-0.5 block">5,99%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD CASA 2 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-3">
+              <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
+                <i class="fa-solid fa-shapes text-xl"></i>
+              </div>
+              <span class="bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full font-bold border border-purple-200">
+                Altíssima Eficiência
+              </span>
+            </div>
+            
+            <div class="mt-4">
+              <h3 class="text-lg font-bold text-slate-900 leading-tight">
+                CASA 2 - Casa Moderna de Esquina
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">Localização: Imbé</p>
+            </div>
+
+            <!-- Dados Principais -->
+            <div class="grid grid-cols-2 gap-3 mt-5">
+              <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider block">Conversas Geradas</span>
+                <span class="text-2xl font-black text-purple-700 mt-0.5 block">41</span>
+                <span class="text-[11px] text-slate-500">potenciais compradores</span>
+              </div>
+              <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider block">Custo por Conversa</span>
+                <span class="text-2xl font-black text-emerald-600 mt-0.5 block">R$ 3,90</span>
+                <span class="text-[11px] text-slate-500">por cliente no chat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Métricas de Apoio -->
+          <div class="pt-4 border-t border-slate-100 grid grid-cols-3 text-center text-xs text-slate-600">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Investido</span>
+              <span class="font-bold text-slate-900 text-sm mt-0.5 block">R$ 159,86</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Cliques</span>
+              <span class="font-bold text-slate-900 text-sm mt-0.5 block">717</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-semibold">Conversão</span>
+              <span class="font-bold text-emerald-600 text-sm mt-0.5 block">5,72%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resumo consolidado da campanha profissional -->
+      <div class="bg-brand-50 border border-brand-200/70 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <p class="text-brand-900">
+            <strong>Consistência Impecável:</strong> Os dois imóveis atingiram exatamente o mesmo custo por interessado (<strong>R$ 3,89</strong> e <strong>R$ 3,90</strong>). Isso comprova que a segmentação e o público estão perfeitamente calibrados!
+          </p>
+        </div>
+        <div class="font-bold text-brand-700 whitespace-nowrap bg-white px-3 py-1.5 rounded-xl border border-brand-200">
+          Total: 133 Interessados (R$ 517,39)
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: COMPARAÇÃO DIDÁTICA (GESTÃO PROFISSIONAL VS. BOTÃO TURBINAR) -->
+    <section class="space-y-6 pt-4 page-break">
+      <div class="border-b border-slate-200 pb-3">
+        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Comparativo de Resultados</span>
+        <h2 class="text-xl font-bold text-slate-900">2. Anúncio Estratégico vs. Botão Turbinar do Marketplace</h2>
+        <p class="text-xs text-slate-500 mt-0.5">
+          Entenda a diferença técnica entre "cliques de curiosos" e "clientes reais chamando para comprar".
+        </p>
+      </div>
+
+      <!-- ALERTA EDUCATIVO -->
+      <div class="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-5 flex flex-col sm:flex-row items-start gap-4">
+        <div class="p-2.5 bg-amber-500 text-white rounded-xl shrink-0">
+          <i class="fa-solid fa-lightbulb text-lg"></i>
+        </div>
+        <div class="space-y-1 text-xs sm:text-sm text-amber-900">
+          <h4 class="font-bold text-amber-950 text-sm">A "Ilusão" do Clique Barato no Botão Turbinar:</h4>
+          <p class="text-amber-800 leading-relaxed">
+            Ao turbinar um post diretamente no Marketplace, o Facebook entrega o anúncio para quem apenas clica na foto por curiosidade (por isso o clique custa só R$ 0,05). 
+            Porém, <strong>99,4% dessas pessoas saem sem mandar nenhuma mensagem</strong>.
+            Na <strong>gestão profissional</strong>, o algoritmo é treinado para procurar apenas quem tem perfil de compra e realmente inicia conversa no chat.
+          </p>
+        </div>
+      </div>
+
+      <!-- TABELA COMPARATIVA LADO A LADO -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- LADO A: GESTÃO PROFISSIONAL -->
+        <div class="bg-white rounded-3xl p-6 border-2 border-emerald-500 shadow-md relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[11px] font-extrabold uppercase px-4 py-1 rounded-bl-2xl">
+            Mais Qualificado & Lucrativo
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-shield-halved text-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base">Campanhas Estruturadas (Casa 1 & 2)</h3>
+                <p class="text-xs text-slate-500">Gerenciador Profissional de Anúncios</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500">Valor Investido:</span>
+                <span class="font-bold text-slate-800">R$ 517,39</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500">Cliques no Link:</span>
+                <span class="font-bold text-slate-800">2.254 cliques qualificados</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500 font-semibold text-emerald-700">Conversas Iniciadas (Resultados):</span>
+                <span class="font-black text-emerald-600 text-base">133 contatos</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500 font-semibold text-slate-800">Custo por Interessado (CPA):</span>
+                <span class="font-extrabold text-emerald-600 text-lg">R$ 3,89</span>
+              </div>
+              <div class="flex justify-between items-center py-2 text-xs">
+                <span class="text-slate-500">Taxa de Conversão Real:</span>
+                <span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">
+                  5,90% (1 conversa a cada 17 cliques)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 bg-emerald-50/50 -mx-6 -mb-6 p-6 rounded-b-3xl">
+            <p class="text-xs text-emerald-800 font-medium">
+              <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>
+              <strong>Foco em Compradores:</strong> O anúncio busca quem tem poder de compra e comportamento de negociação imobiliária.
+            </p>
+          </div>
+        </div>
+
+        <!-- LADO B: BOTÃO TURBINAR MARKETPLACE -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-300 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute top-0 right-0 bg-slate-400 text-white text-[11px] font-extrabold uppercase px-4 py-1 rounded-bl-2xl">
+            Impulsionamento Avulso
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-store text-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base">Classificado Turbinado no Marketplace</h3>
+                <p class="text-xs text-slate-500">Botão "Turbinar Publicação"</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500">Valor Investido:</span>
+                <span class="font-bold text-slate-800">R$ 159,73</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500">Cliques no Link:</span>
+                <span class="font-bold text-slate-800">3.325 cliques de curiosos</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500 font-semibold text-rose-700">Conversas Iniciadas (Resultados):</span>
+                <span class="font-black text-rose-600 text-base">21 contatos</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
+                <span class="text-slate-500 font-semibold text-slate-800">Custo por Interessado (CPA):</span>
+                <span class="font-extrabold text-rose-600 text-lg">R$ 7,61 <span class="text-xs font-normal text-rose-500">(+95% mais caro)</span></span>
+              </div>
+              <div class="flex justify-between items-center py-2 text-xs">
+                <span class="text-slate-500">Taxa de Conversão Real:</span>
+                <span class="font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-lg border border-rose-200">
+                  0,63% (1 conversa a cada 158 cliques)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 bg-amber-50/50 -mx-6 -mb-6 p-6 rounded-b-3xl">
+            <p class="text-xs text-amber-900 font-medium">
+              <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i>
+              <strong>Dispersão de Dinheiro:</strong> Cada cliente custou praticamente o dobro porque 99,4% do público eram apenas pessoas passando fotos.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SIMULAÇÃO VISUAL DE ECONOMIA -->
+      <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-3xl p-6 sm:p-7 shadow-md">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center md:text-left">
+            <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-200">
+              Impacto Prático no seu Bolso
+            </span>
+            <h3 class="text-lg sm:text-xl font-bold">
+              E se os R$ 159,73 do Turbinar tivessem sido investidos na Campanha Profissional?
+            </h3>
+            <p class="text-emerald-100 text-xs sm:text-sm">
+              Você teria recebido aproximadamente <strong class="text-white underline">41 conversas</strong> em vez de apenas 21. Foram <strong class="text-white">20 potenciais compradores a menos</strong> devido ao método avulso.
+            </p>
+          </div>
+          <div class="shrink-0 bg-white text-emerald-800 px-6 py-4 rounded-2xl font-black text-center shadow-lg">
+            <span class="text-xs block text-slate-500 font-bold uppercase">Potencial Dobrado</span>
+            <span class="text-2xl text-emerald-700">+95% Mais Leads</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: GRÁFICOS VISUAIS INTERATIVOS -->
+    <section class="space-y-5 pt-4">
+      <div class="border-b border-slate-200 pb-3">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Visualização Gráfica</span>
+        <h2 class="text-xl font-bold text-slate-900">3. Comparativo Visual de Performance</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- GRÁFICO 1: Custo por Interessado -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Custo por Interessado (CPA em R$)</h4>
+              <p class="text-xs text-slate-500">Quanto menor, mais econômico para você</p>
+            </div>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200">
+              -49% Menor Custo
+            </span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chartCPA"></canvas>
+          </div>
+        </div>
+
+        <!-- GRÁFICO 2: Taxa de Conversão -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Taxa de Conversão (Cliques → Chat)</h4>
+              <p class="text-xs text-slate-500">Percentual de visitantes que realmente chamam</p>
+            </div>
+            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded-lg border border-brand-200">
+              9,4x Mais Eficiente
+            </span>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="chartTaxa"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: DEMOGRAFIA E PERFIL DOS INTERESSADOS -->
+    <section class="space-y-5 pt-4 page-break">
+      <div class="border-b border-slate-200 pb-3">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Inteligência de Mercado</span>
+        <h2 class="text-xl font-bold text-slate-900">4. Perfil de Quem Demonstrou Interesse nos Imóveis</h2>
+        <p class="text-xs text-slate-500 mt-0.5">
+          Compreendendo quem é o seu comprador ideal para afunilar as próximas negociações.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- DIVISÃO POR GÊNERO -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm mb-1">Divisão por Gênero</h4>
+            <p class="text-xs text-slate-500 mb-4">Quem mais entra em contato</p>
+            <div class="h-48 relative">
+              <canvas id="chartGenero"></canvas>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-1">
+            <p><strong>Mulheres (66%):</strong> Tomam a frente no primeiro contato e pesquisa de casas familiares.</p>
+            <p><strong>Homens (34%):</strong> Representam 1 terço direto dos chamados.</p>
+          </div>
+        </div>
+
+        <!-- FAIXAS ETÁRIAS CAMPEÃS -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm md:col-span-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <h4 class="font-bold text-slate-900 text-sm">Volume de Contatos por Faixa Etária</h4>
+              <span class="text-xs text-slate-400">Total: 154 contatos</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-4">Maturidade do comprador e custo médio</p>
+            <div class="h-48 relative">
+              <canvas id="chartIdade"></canvas>
+            </div>
+          </div>
+
+          <!-- INSIGHTS DE IDADE -->
+          <div class="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span class="font-bold text-brand-700 block">25 a 34 anos</span>
+              <span class="text-slate-600">35 contatos (Custo: R$ 3,22). Casais jovens e primeiro imóvel.</span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span class="font-bold text-brand-700 block">35 a 44 anos</span>
+              <span class="text-slate-600">33 contatos (Custo: R$ 4,23). Famílias com alto poder de compra.</span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span class="font-bold text-brand-700 block">65+ anos</span>
+              <span class="text-slate-600">24 contatos (Custo: R$ 5,02). Aposentadoria e lazer na praia.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: CONCLUSÕES E RECOMENDAÇÕES ESTRATÉGICAS -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Próximos Passos</span>
+        <h2 class="text-xl font-bold text-slate-900">5. Recomendações para Maximizar suas Vendas</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2">
+          <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
+            1
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Centralizar 100% da Verba</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Interromper impulsionamentos manuais no Marketplace. Ao injetar esse valor no gerenciador profissional, podemos gerar até o <strong>dobro de conversas</strong> com o mesmo investimento.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2">
+          <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">
+            2
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Dar Mais Força à Casa 2</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            A <strong>Casa Moderna de Esquina</strong> entregou exatamente o mesmo custo por lead (R$ 3,90) que o Sobrado, mas recebeu menos orçamento. Aumentar a verba dela trará um pico de novas oportunidades.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2">
+          <div class="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">
+            3
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Filtro de Qualidade Comercial</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Focar ainda mais nos públicos de <strong>25 a 45 anos</strong> e <strong>65+ anos</strong>, que apresentaram o maior volume e melhor perfil financeiro para aquisição imobiliária em Imbé.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RODAPÉ DE AÇÃO -->
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 text-xs text-slate-500">
+        <div>
+          Relatório gerado em <strong>Outubro de 2026</strong> • Gestão Especializada em Tráfego Imobiliário
+        </div>
+        <div class="no-print">
+          <button onclick="window.print()" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-medium px-4 py-2 rounded-xl transition text-xs shadow-sm">
+            <i class="fa-solid fa-print"></i> Imprimir ou Salvar Relatório
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SCRIPTS DOS GRÁFICOS (CHART.JS) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      // 1. Gráfico CPA
+      const ctxCPA = document.getElementById('chartCPA').getContext('2d');
+      new Chart(ctxCPA, {
+        type: 'bar',
+        data: {
+          labels: ['Campanha Estratégica (Profissional)', 'Botão Turbinar (Marketplace)'],
+          datasets: [{
+            label: 'Custo por Interessado (R$)',
+            data: [3.89, 7.61],
+            backgroundColor: ['#10b981', '#f43f5e'],
+            borderRadius: 12,
+            barThickness: 45
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ' R$ ' + context.parsed.y.toFixed(2) + ' por cliente';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) { return 'R$ ' + value; }
+              },
+              grid: { color: '#f1f5f9' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+      // 2. Gráfico Taxa de Conversão
+      const ctxTaxa = document.getElementById('chartTaxa').getContext('2d');
+      new Chart(ctxTaxa, {
+        type: 'bar',
+        data: {
+          labels: ['Campanha Estratégica (Profissional)', 'Botão Turbinar (Marketplace)'],
+          datasets: [{
+            label: 'Taxa de Conversão (%)',
+            data: [5.90, 0.63],
+            backgroundColor: ['#2563eb', '#fbbf24'],
+            borderRadius: 12,
+            barThickness: 45
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ' ' + context.parsed.y.toFixed(2) + '% dos cliques viraram conversa';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) { return value + '%'; }
+              },
+              grid: { color: '#f1f5f9' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+      // 3. Gráfico Gênero
+      const ctxGenero = document.getElementById('chartGenero').getContext('2d');
+      new Chart(ctxGenero, {
+        type: 'doughnut',
+        data: {
+          labels: ['Mulheres (101)', 'Homens (53)'],
+          datasets: [{
+            data: [101, 53],
+            backgroundColor: ['#ec4899', '#3b82f6'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { boxWidth: 12, font: { size: 11 } }
+            }
+          },
+          cutout: '65%'
+        }
+      });
+
+      // 4. Gráfico Idade
+      const ctxIdade = document.getElementById('chartIdade').getContext('2d');
+      new Chart(ctxIdade, {
+        type: 'bar',
+        data: {
+          labels: ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
+          datasets: [{
+            label: 'Conversas Iniciadas',
+            data: [23, 35, 33, 21, 18, 24],
+            backgroundColor: '#3b82f6',
+            borderRadius: 8,
+            barThickness: 24
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f1f5f9' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
